@@ -14,6 +14,18 @@ from django.db import models
 # class Subject(models.Model):
 #     name = models.CharField(max_length=30,blank=True,null=True)
 
+class Album(models.Model):
+    name = models.CharField(max_length=200, blank=True, null= True)
+    artist = models.CharField(max_length=200, blank=True, null= True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+class Music(models.Model):
+    album = models.ForeignKey(Album, on_delete= models.CASCADE, related_name= "musics_album")
+    name = models.CharField(max_length=200, blank=True, null= True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
 
 class PropertyMasterApi(models.Model):
     # index_key = models.AutoField()
